@@ -1,0 +1,65 @@
+.sugestion-container ::placeholder {
+    color: #000;
+    font-weight: 300;
+}
+
+.sugestion-container :-moz-placeholder {
+    color: #000;
+    font-weight: 300;
+    opacity: 1;
+}
+
+.sugestion-container ::-moz-placeholder {
+    color: #000;
+    font-weight: 300;
+    opacity: 1;
+}
+
+.sugestion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.3em;
+}
+
+.sugestion-container h2 {
+    font-size: .789em;
+    margin-bottom: 1.2em;
+}
+
+.sugestion-container form {
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    height: auto;
+}
+
+.sugestion-container form input[type=text] {
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: .19em;
+    border: none;
+}
+
+.sugestion-container form textarea {
+    padding: 1em;
+    height: 15em;
+    border-radius: .19em;
+    border: none;
+}
+
+.sugestion-container form input[type=submit] {
+    border: none;
+    margin-top: 1.3em;
+    color: #FFF;
+    background: #0A7A42;
+    border-radius: .19em;
+    width: 12em;
+    padding: 1em;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+
+.sugestion-container form input[type=submit]:hover {
+    background: rgb(1, 65, 33);;
+}

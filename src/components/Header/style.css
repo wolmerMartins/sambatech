@@ -1,0 +1,60 @@
+.active {
+    color: #999 !important;
+    -webkit-transition: color .3s linear;
+    -moz-transition: color .3s linear;
+    -o-transition: color .3s linear;
+    transition: color .3s linear;
+}
+
+.header-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+}
+
+.header-container .logo {
+    width: 4.6em;
+    height: auto;
+}
+
+.header-container .logo img {
+    width: 100%;
+}
+
+.header-container .logo figcaption {
+    display: none;
+}
+
+.header-container .main-menu ul {
+    display: flex;
+}
+
+.header-container .main-menu ul li {
+    font-size: .493em;
+    margin: 0 5px;
+    color: #FFF;
+    transition: color .3s linear;
+}
+
+.header-container .main-menu ul li:hover {
+    color: #999;
+}
+
+.search-container label {
+    display: none;
+}
+
+.search-container input {
+    background: transparent;
+    background-image: url('../../assets/images/magnifier.png');
+    background-repeat: no-repeat;
+    background-position: 100% 40%;
+    background-size: .8em .8em;
+    border: none;
+    border-bottom: 2px solid #999;
+    padding: 0 0 10px;
+    font-size: .702em;
+    width: 22em;
+    color: #999;
+}

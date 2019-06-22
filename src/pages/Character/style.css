@@ -1,0 +1,127 @@
+.alive {
+    background: #0A7A42;
+}
+
+.alive-button {
+    border: 1px solid #0A7A42;
+    color: #0A7A42;
+}
+
+.alive-button:hover {
+    background: #0A7A42 !important;
+    color: #FFF;
+}
+
+.dead {
+    background: #F56624;
+}
+
+.dead-button {
+    border: 1px solid #F56624;
+    color: #F56624;
+}
+
+.dead-button:hover {
+    background: #F56624 !important;
+    color: #FFF;
+}
+
+.all-characters {
+    border: 1px solid #FFF;
+    color: #FFF;
+}
+
+.all-characters:hover {
+    background: #FFF !important;
+    color: #000;
+}
+
+.main-container .characters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .75em;
+}
+
+.main-container .characters-header h1 {
+    font-size: .789em;
+}
+
+.main-container .characters-header .filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 15em;
+}
+
+.main-container .characters-header .filter-container h3 {
+    font-size: .438em;
+}
+
+.main-container .characters-header .filter-container button {
+    background: transparent;
+    width: 7.5em;
+    height: 2.5em;
+    font-size: .438em;
+    cursor: pointer;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.main-container .characters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.main-container .characters article {
+    width: 7.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: .75em 0;
+}
+
+.main-container .characters article .character {
+    background-image: url('../../assets/images/walter-white.jpg');
+    background-position: 50% 50%;
+    background-size: 13em;
+    background-repeat: no-repeat;
+    width: 7.5em;
+    height: 9.5em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.main-container .characters article .character span {
+    width: 7.5em;
+    height: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    margin-top: 1em;
+    font-size: .438em;
+}
+
+.main-container .characters article .character-info {
+    height: 2.4em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: .5em;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .7), rgba(0, 0, 0, 1));
+}
+
+.main-container .characters article .character-info h2 {
+    font-size: .624em;
+}
+
+.main-container .characters article .character-info p {
+    font-size: .348em;
+}

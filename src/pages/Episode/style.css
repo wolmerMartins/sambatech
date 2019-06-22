@@ -1,0 +1,33 @@
+.episodes-container h2 {
+    font-size: 1em;
+    text-align: center;
+    padding: 1.2em 0;
+}
+
+.episodes-container section article {
+    display: flex;
+    justify-content: space-between;
+    height: 120px;
+    padding: .9em 0;
+    border-bottom: 1px solid #999;
+}
+
+.episodes-container section article h4 {
+    font-size: 1.2em;
+}
+
+.episodes-container section article h5{
+    font-weight: 100;
+    font-size: .555em;
+}
+
+.episodes-container section article p {
+    font-size: .555em;
+}
+
+.episodes-container section article .episode-characters {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

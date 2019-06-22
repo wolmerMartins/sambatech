@@ -1,0 +1,29 @@
+.paginator-container {
+    padding: 20px 0 40px;
+}
+
+.paginator-container ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginator-container ul button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.paginator-container ul button:hover li {
+    color: #999;
+    text-decoration: underline;
+}
+
+.paginator-container ul li {
+    color: #FFF;
+    margin: 0 5px;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
