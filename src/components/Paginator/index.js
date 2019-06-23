@@ -1,32 +1,57 @@
 import React, { Component } from 'react';
 
+import prev from '../../assets/images/prev.png';
+import next from '../../assets/images/next.png';
+
 import './style.css';
 
 export default class Paginator extends Component {
     state = {
         pages: 0,
-        charactersPerPage: 0,
+        registersPerPage: 0,
         currentPage: 1,
-        characters: []
+        registers: []
     }
 
-    setPagination = e => {
-        this.setState({ currentPage: parseInt(e.target.innerText) });
+    nextPage = e => {
+        return this.state.currentPage + 1;
+    }
 
-        const charactersEnd = this.state.charactersPerPage * parseInt(e.target.innerText);
-        const charactersStart = charactersEnd - this.state.charactersPerPage;
+    prevPage = e => {
+        return this.state.currentPage - 1;
+    }
 
-        const characters = this.props.registers.characters.filter(
-            character => this.props.registers.characters.indexOf(character) >= charactersStart && this.props.registers.characters.indexOf(character) < charactersEnd
+    findRegisters = page => {
+        const registersEnd = this.state.registersPerPage * page;
+        const registersStart = registersEnd - this.state.registersPerPage;
+
+        const registers = this.props.registers.filter(
+            register => this.props.registers.indexOf(register) >= registersStart && this.props.registers.indexOf(register) < registersEnd
         );
+
+        return registers;
+    }
+
+    setPagination = async page => {
+        const registers = this.findRegisters(page);
+
+        await this.setState({ currentPage: page, registers });
 
         return this.state;
     }
 
-    componentDidMount() {
-        const pages = Math.ceil(this.props.registers.characters.length / this.props.charactersPerPage);
+    handlePagination = e => {
+        const page = e === 1 ? e : e.target.className === 'prev' ? this.prevPage() : e.target.className === 'next' ? this.nextPage() : parseInt(e.target.innerText);
 
-        this.setState({ charactersPerPage: this.props.charactersPerPage, pages });
+        return this.setPagination(page);
+    }
+
+    async componentDidMount() {
+        const pages = Math.ceil(this.props.registers.length / this.props.registersPerPage);
+
+        await this.setState({ registersPerPage: this.props.registersPerPage, pages });
+        
+        this.handlePagination(1);
     }
 
     render() {
@@ -41,11 +66,11 @@ export default class Paginator extends Component {
         return (
             <div className="paginator-container">
                 <ul>
-                    <button><li>prev</li></button>
+                    <button className="prev" onClick={e => this.props.handlePagination(this.handlePagination(e))} disabled={this.state.currentPage === 1}><li className="prev"><img className="prev" src={ prev } alt="voltar para página anterior" /></li></button>
                 {pages.map(page =>
-                    <button key={page} onClick={e => this.props.handlePagination(this.setPagination(e))}><li>{page}</li></button>
+                    <button className={page === this.state.currentPage ? "page-selected" : ""} key={page} onClick={e => this.props.handlePagination(this.handlePagination(e))}><li>{page}</li></button>
                 )}
-                    <button><li>next</li></button>
+                    <button className="next" onClick={e => this.props.handlePagination(this.handlePagination(e))} disabled={this.state.currentPage === this.state.pages}><li className="next"><img className="next" src={ next } alt="ir para próxima página" /></li></button>
                 </ul>
             </div>
         );
