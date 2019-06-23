@@ -13,16 +13,20 @@
 }
 
 .episodes-container section article h4 {
-    font-size: 1.2em;
+    font-size: .790em;
 }
 
 .episodes-container section article h5{
     font-weight: 100;
-    font-size: .555em;
+    font-size: .438em;
 }
 
 .episodes-container section article p {
-    font-size: .555em;
+    font-size: .438em;
+}
+
+.episodes-container section article span {
+    flex-grow: 1;
 }
 
 .episodes-container section article .episode-characters {
@@ -30,4 +34,15 @@
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
+    flex-grow: 2;
+}
+
+@media screen and (max-width: 800px) {
+    .episodes-container section article h5 {
+        font-size: .493em;
+    }
+
+    .episodes-container section article p {
+        font-size: .493em;
+    }
 }

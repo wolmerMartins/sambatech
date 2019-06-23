@@ -12,14 +12,39 @@ export default class Character extends Component {
         characters: [],
         pagination: {
             pages: 0,
-            charactersPerPage: 8,
+            registersPerPage: 8,
             currentPage: 1,
-            characters: []
+            registers: []
         }
     }
 
-    handlePagination(value) {
-        console.log(value);
+    displayCharacters = async characters => {
+        await this.setState({ characters });
+
+        this.setPagination();
+    }
+
+    getAllCharacters = async e => {
+        const response = await api.get('characters');
+
+        this.displayCharacters(response.data);
+    }
+
+    getDeadCharacters = async e => {
+        const dead = await api.get('characters');
+
+        this.displayCharacters(dead.data.filter(char => char.status !== 'Alive'));
+    }
+
+    getAliveCharacters = async e => {
+        const alive = await api.get('characters');
+
+        this.displayCharacters(alive.data.filter(char => char.status === 'Alive'));
+    }
+
+    handlePagination = async (response) => {
+        const pagination = await response;
+        this.setState({ pagination });
     }
 
     cleanFilterSelected = (alive, dead, all) => {
@@ -38,25 +63,30 @@ export default class Character extends Component {
         switch(e.target.innerHTML) {
             case 'Vivo':
                 alive.classList.add('alive-button-selected');
+                this.getAliveCharacters();
                 break;
             case 'Morto':
                 dead.classList.add('dead-button-selected');
+                this.getDeadCharacters();
                 break;
             default:
                 all.classList.add('all-characters-selected');
+                this.getAllCharacters();
         }
     }
 
-    async componentDidMount() {
+    setPagination = e => {
+        const pages = Math.trunc(this.state.characters.length / this.state.pagination.registersPerPage);
+        const registers = this.state.characters.filter(char => this.state.characters.indexOf(char) < this.state.pagination.registersPerPage);
+        const pagination = { pages, currentPage: 1, registers };
+
+        this.setState({ pagination: Object.assign(this.state.pagination, pagination) });
+    }
+
+    componentDidMount() {
         document.querySelector('.all-characters').classList.toggle('all-characters-selected');
-
-        const response = await api.get('characters');
-        const pages = Math.trunc(response.data.length / this.state.pagination.charactersPerPage);
-        const characters = response.data.filter(char => char.char_id <= this.state.pagination.charactersPerPage);
-        const pagination = { pages, characters };
-
-        this.setState({ characters: response.data, pagination: Object.assign(this.state.pagination, pagination) });
-        console.log(this.state);
+        
+        this.getAllCharacters();
     }
 
     render() {
@@ -74,7 +104,7 @@ export default class Character extends Component {
                     </div>
 
                     <section className="characters">
-                    {this.state.pagination.characters.map(char =>
+                    {this.state.pagination.registers.map(char =>
                         <article key={char.char_id}>
                             <img className="background-image" src={char.img} alt="foto do personagem em plano de fundo" />
                             <div className="character">
@@ -92,7 +122,7 @@ export default class Character extends Component {
                     
                     {
                         this.state.characters.length > 0 ?
-                        <Paginator charactersPerPage={8} handlePagination={this.handlePagination} registers={this.state} />
+                        <Paginator registersPerPage={8} handlePagination={this.handlePagination} registers={this.state.characters} />
                         : <div></div>
                     }
                 </main>
