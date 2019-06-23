@@ -1,3 +1,8 @@
+.page-selected li {
+    color: #999 !important;
+    text-decoration: underline;
+}
+
 .paginator-container {
     padding: 20px 0 40px;
 }
@@ -19,6 +24,10 @@
     text-decoration: underline;
 }
 
+.paginator-container ul button:disabled {
+    cursor: not-allowed;
+}
+
 .paginator-container ul li {
     color: #FFF;
     margin: 0 5px;
@@ -26,4 +35,8 @@
     -moz-transition: all .3s linear;
     -o-transition: all .3s linear;
     transition: all .3s linear;
+}
+
+.paginator-container ul li img {
+    height: .65em;
 }
