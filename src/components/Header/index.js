@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
 
 import logo from '../../assets/images/breaking-bad-logo.png';
 
@@ -7,7 +8,9 @@ import './style.css';
 
 export default class Header extends Component {
     state = {
-        search: ''
+        search: '',
+        character: [],
+        url: ''
     }
 
     setActiveLink = (pathName) => {
@@ -24,6 +27,22 @@ export default class Header extends Component {
 
     componentDidMount() {
         this.setActiveLink(window.location.pathname);
+    }
+
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    handleSubmit = async e => {
+        e.preventDefault();
+        
+        if (this.state.search !== '') {
+            const character = await api.get(`characters?name=${this.state.search}`);
+
+            this.setState({ character: character.data });
+
+            console.log(this.state);
+        }
     }
 
     handleClick = e => {
@@ -54,9 +73,10 @@ export default class Header extends Component {
                     </nav>
 
                     <span className="search-container">
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <label htmlFor="search">Pesquise os personagens</label>
-                            <input id="search" type="text" name="search" placeholder="Pesquise os personagens" />
+                            <input id="search" type="text" value={this.state.search} onChange={this.handleChange} name="search" placeholder="Pesquise os personagens" />
+                            <button type="submit"><span>Pesquisar</span></button>
                         </form>
                     </span>
                 </header>
